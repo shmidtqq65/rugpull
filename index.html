@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RUGPULL</title>
+<meta name="description" content="Every website is a memecoin now. Launch any page as a coin, click its words to buy them, press R to pull the rug and watch the page fall into a pile. Esc refunds everything. A parody: nothing leaves your browser.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RUGPULL">
+<meta property="og:title" content="RUGPULL: every website is a memecoin now">
+<meta property="og:description" content="Launch any page as a coin, buy its words, pull the rug. Esc refunds everything. A parody: no coins, no wallets, nothing leaves your browser.">
+<meta property="og:url" content="https://shmidtqq65.github.io/rugpull/">
+<meta property="og:image" content="https://shmidtqq65.github.io/rugpull/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@shmidtqq">
+<meta name="twitter:image" content="https://shmidtqq65.github.io/rugpull/assets/og.png">
+<meta name="theme-color" content="#323639">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<style>
+@font-face { font-family: "STIX Two Text"; font-style: normal; font-weight: 400; font-display: swap; src: url(assets/fonts/stix-two-text-400.woff2) format("woff2"); }
+@font-face { font-family: "STIX Two Text"; font-style: italic; font-weight: 400; font-display: swap; src: url(assets/fonts/stix-two-text-400-italic.woff2) format("woff2"); }
+@font-face { font-family: "STIX Two Text"; font-style: normal; font-weight: 700; font-display: swap; src: url(assets/fonts/stix-two-text-700.woff2) format("woff2"); }
+:root {
+  /* A whitepaper open in a PDF viewer: a grey desk, a dark toolbar, one white sheet set like a 2008 preprint.
+     The paper is the page RUGPULL launches, so it stays plain: black type, a few rules, two figures. */
+  --desk: #525659;
+  --bar: #323639;
+  --bar-ink: #f1f3f4;
+  --bar-dim: #bdc1c6;
+  --sheet: #ffffff;
+  --ink: #111111;
+  --grey: #555a60;
+  --rule: #c9cdd2;
+  --green: #12a36a;
+  --red: #d8283a;
+  --serif: "STIX Two Text", "Times New Roman", Times, serif;
+  --ui: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { background: var(--desk); -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--desk); color: var(--ink); font: 17px/1.55 var(--serif); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+:focus-visible { outline: 2px solid #8ab4f8; outline-offset: 2px; }
+code, kbd { font: 0.84em/1 var(--mono); }
+kbd { display: inline-block; padding: 2px 5px; border: 1px solid #9aa0a6; border-bottom-width: 2px; border-radius: 3px; background: #f8f9fa; }
+
+/* the viewer's toolbar */
+.bar { position: sticky; top: 0; z-index: 5; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; height: 56px; padding: 0 18px; background: var(--bar); color: var(--bar-ink); font: 400 14px/1 var(--ui); box-shadow: 0 1px 3px rgba(0,0,0,.35); }
+.file { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.file svg { flex: 0 0 auto; width: 20px; height: 20px; }
+.file span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pages { color: var(--bar-dim); font-variant-numeric: tabular-nums; }
+.pages b { display: inline-block; min-width: 28px; margin-right: 6px; padding: 5px 4px; border-radius: 3px; background: #202124; color: var(--bar-ink); font-weight: 400; text-align: center; }
+.links { display: flex; justify-content: flex-end; gap: 4px; }
+.links a { padding: 9px 11px; border-radius: 99px; color: var(--bar-ink); text-decoration: none; }
+.links a:hover { background: #474a4d; }
+
+/* the sheet */
+.desk { padding: 34px 16px 70px; }
+.paper { max-width: 816px; margin: 0 auto; padding: 84px 92px 60px; background: var(--sheet); box-shadow: 0 2px 6px rgba(0,0,0,.3), 0 12px 40px rgba(0,0,0,.25); }
+h1 { margin: 0 0 18px; font: 700 27px/1.25 var(--serif); text-align: center; }
+.paper .authors { margin: 0 0 34px; text-align: center; line-height: 1.45; }
+.authors a { text-decoration: none; }
+.authors a:hover { text-decoration: underline; }
+.abstract { margin: 0 42px 30px; font-size: 15.5px; line-height: 1.5; text-align: justify; hyphens: auto; }
+.abstract b { font-weight: 700; }
+.paper p { margin: 0 0 12px; text-align: justify; hyphens: auto; }
+h2 { margin: 30px 0 10px; font: 700 18px/1.3 var(--serif); }
+
+/* the box where it runs */
+.try { margin: 6px 0 30px; padding: 20px 22px 18px; border: 1px solid var(--ink); }
+.try .row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 14px; margin-bottom: 12px; }
+.launch { all: unset; box-sizing: border-box; display: inline-flex; align-items: center; gap: 9px; padding: 12px 18px; border-radius: 3px; background: var(--ink); color: #fff; font: 700 15px/1 var(--ui); cursor: pointer; }
+.launch i { width: 9px; height: 9px; border-radius: 50%; background: #2fdc94; box-shadow: 0 0 0 3px rgba(47,220,148,.25); }
+.launch[aria-pressed="true"] i { background: #ff5b6b; box-shadow: 0 0 0 3px rgba(255,91,107,.25); }
+.launch:hover { background: #2b2b2b; }
+.bm { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border: 1.5px dashed var(--ink); border-radius: 99px; font: 700 14px/1 var(--ui); letter-spacing: .06em; text-decoration: none; cursor: grab; }
+.bm svg { width: 18px; height: 18px; }
+.try p { margin: 0; font-size: 15px; line-height: 1.5; text-align: left; color: #2a2d31; }
+
+figure { margin: 22px 0 24px; }
+figure .img { border: 1px solid var(--rule); }
+figure img, figure svg { display: block; width: 100%; height: auto; }
+figure img { aspect-ratio: 8 / 5; background: #fffaf3; }
+figcaption { margin-top: 9px; font-size: 14.5px; line-height: 1.45; text-align: center; color: #2a2d31; }
+.paper .eq { margin: 16px 0 18px; text-align: center; font-style: italic; font-size: 17px; }
+.eq span { float: right; font-style: normal; }
+ol.ways { margin: 6px 0 14px; padding-left: 24px; }
+ol.ways > li { margin: 0 0 8px; text-align: left; }
+ol.ways > li b { font-weight: 700; }
+table.keys { width: 100%; margin: 10px 0 16px; border-collapse: collapse; border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); font-size: 15.5px; }
+table.keys th, table.keys td { padding: 6px 10px 6px 0; text-align: left; vertical-align: top; }
+table.keys thead th { border-bottom: 1px solid var(--ink); font-weight: 700; }
+table.keys td:first-child { width: 150px; white-space: nowrap; }
+.refs { margin: 0; padding-left: 34px; font-size: 15px; line-height: 1.5; }
+.refs li { margin: 0 0 6px; text-align: left; }
+.paper .folio { margin: 40px 0 0; text-align: center; font-size: 15px; }
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 50; max-width: calc(100vw - 32px); padding: 12px 16px; border-radius: 6px; background: #202124; color: #f1f3f4; font: 400 14px/1.45 var(--ui); box-shadow: 0 6px 24px rgba(0,0,0,.35); }
+
+@media (max-width: 760px) {
+  .bar { grid-template-columns: 1fr auto; height: 50px; padding: 0 10px; gap: 8px; }
+  .pages { display: none; }
+  .links a:not(.gh) { display: none; }
+  .desk { padding: 12px 8px 40px; }
+  .paper { padding: 40px 20px 30px; }
+  h1 { font-size: 23px; }
+  .abstract { margin: 0 0 24px; }
+  .paper p, .abstract { text-align: left; hyphens: manual; }
+  .try { padding: 16px; }
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="file"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2.5h8l5 5V21a.5.5 0 0 1-.5.5h-12A.5.5 0 0 1 6 21z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M14 2.5V8h5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span>rugpull-whitepaper.pdf</span></div>
+  <div class="pages"><b>1</b>/ 1</div>
+  <nav class="links" aria-label="Links"><a href="#install">Install</a><a class="gh" href="https://github.com/shmidtqq65/rugpull">GitHub</a><a href="https://x.com/shmidtqq">@shmidtqq</a></nav>
+</header>
+
+<main class="desk">
+  <article class="paper">
+    <h1>RUGPULL: A Peer-to-Peer<br>Exit Liquidity System</h1>
+    <p class="authors">shmidt<br><a href="https://x.com/shmidtqq">@shmidtqq</a><br><a href="https://github.com/shmidtqq65/rugpull">github.com/shmidtqq65/rugpull</a></p>
+
+    <p class="abstract"><b>Abstract.</b> Every website is a memecoin now. We propose a system in which any page can be launched as a coin in one click, traded by clicking its words and rugged with one key, without wallets, chains, servers or money of any kind. The ticker comes from the site's own name, the buyers are named after the words on the page, and the bonding curve fills up whether anyone is watching or not. When the developer pulls the liquidity, every word, picture and button on the screen falls into a pile. Pressing Esc issues a full refund: the page flies back together exactly as it was. The system is a parody, and nothing leaves your browser.</p>
+
+    <div class="try" id="try">
+      <div class="row">
+        <button class="launch" id="launch" type="button" aria-pressed="false" data-rugpull-ignore><i></i><span>Launch this paper as a coin</span></button>
+        <a class="bm" id="bm" href="#install" title="Drag me to your bookmarks bar" data-rugpull-ignore><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 17.5l4.5-5 3 2.5L19 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>RUGPULL</a>
+      </div>
+      <p>Click words to buy them, press <kbd>R</kbd> to pull the rug and <kbd>Esc</kbd> to get everything back. To run it on any website, drag the dashed button to your bookmarks bar. Or <a href="demo/">try it on a baking blog</a>.</p>
+    </div>
+
+    <h2>1. Introduction</h2>
+    <p>Launching a coin used to take an afternoon: a meme, a ticker, a website and some nerve. Most launches still ended the same way, with a chart that went up, a developer who sold and a lot of people holding the bag. RUGPULL keeps the ending and skips everything else. The website you are reading is already a meme with a name, so it only has to be listed.</p>
+    <p>What has been missing is a rug pull that hurts nobody, and a way to get the website back afterwards. This paper describes both.</p>
+
+    <figure>
+      <div class="img">
+        <picture>
+          <source srcset="assets/demo.webp" type="image/webp">
+          <img src="assets/demo.gif" width="1280" height="800" alt="A baking blog is launched as $CRUMB: a trading panel slides in, words on the page light up as they are bought, the chart climbs, then the rug is pulled, every word and picture falls into a pile, a card shows minus 99.7 percent, and Esc puts the page back.">
+        </picture>
+      </div>
+      <figcaption>Figure 1: A baking blog is launched as $CRUMB, bought, rugged and refunded.</figcaption>
+    </figure>
+
+    <h2>2. Launches</h2>
+    <p>A coin is named after the site's name if it has one, otherwise after its address, otherwise after its title. The Crumb becomes $CRUMB and the.internet becomes $INTERNET. A name too long for a ticker keeps its initials or loses its vowels, so news.ycombinator.com trades as $YCMBNTR. The price starts at a fraction of a cent, and a short history is made up so the chart has something to show.</p>
+
+    <h2>3. Trading</h2>
+    <p>A trading panel opens with the price, the candles, the market cap, the holders, the volume, the liquidity and a bonding curve. Click any word on the page to buy it: it lights up in gold and a receipt floats up. The crowd keeps buying too. Their words light up in green, and every buyer in the feed is named after a word from the page, such as sourdough.eth or degenflour. While the coin is live, links and buttons on the page do nothing; a click is always a buy.</p>
+
+    <h2>4. The rug</h2>
+    <p>Press <kbd>R</kbd> or the red button, or simply wait: when the bonding curve reaches 100%, the developer pulls the rug for you. The price falls more than 99% in half a second, the dead cat bounces once, and every word, picture and coloured box on the screen falls to the bottom in a pile. A card with the damage comes up, ready to save as a PNG.</p>
+    <p class="eq">P(t) = P<sub>0</sub> e<sup>&mu;t + &sigma;W(t)</sup> &middot; 0.003<sup>[t &ge; t<sub>rug</sub>]</sup><span>(1)</span></p>
+    <figure>
+      <div class="img">
+        <svg viewBox="0 0 640 260" role="img" aria-label="A price chart that climbs for most of its length and then drops straight down to almost zero">
+          <path d="M60 20V220H620" fill="none" stroke="#111" stroke-width="1.2"/>
+          <path d="M60 52H620" stroke="#111" stroke-width=".8" stroke-dasharray="4 4"/>
+          <text x="66" y="46" font-family="STIX Two Text,serif" font-style="italic" font-size="14">all-time high</text>
+          <path d="M60 206 L80 205 L100 207 L120 203 L140 204 L160 199 L180 201 L200 195 L220 197 L240 190 L260 186 L280 189 L300 178 L320 172 L340 176 L360 160 L380 151 L400 156 L420 132 L440 118 L460 124 L480 98 L500 84 L520 90 L540 66 L556 52" fill="none" stroke="#12a36a" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M556 52 L560 214 L572 206 L584 213 L600 212 L620 213" fill="none" stroke="#d8283a" stroke-width="2.4" stroke-linejoin="round"/>
+          <circle cx="556" cy="52" r="4" fill="#d8283a"/>
+          <text x="548" y="40" text-anchor="end" font-family="STIX Two Text,serif" font-style="italic" font-size="14">t<tspan font-size="10" dy="3">rug</tspan></text>
+          <text x="340" y="246" text-anchor="middle" font-family="STIX Two Text,serif" font-style="italic" font-size="15">time</text>
+          <text x="40" y="124" text-anchor="middle" font-family="STIX Two Text,serif" font-style="italic" font-size="15" transform="rotate(-90 40 124)">price</text>
+        </svg>
+      </div>
+      <figcaption>Figure 2: The price of a typical launch, after equation (1). Units are made up.</figcaption>
+    </figure>
+
+    <h2>5. Refunds</h2>
+    <p>Press <kbd>Esc</kbd> on the card and the pile flies back into place, piece by piece, and the page underneath is switched back on. Nothing was ever rewritten. The words were copied onto a canvas, the page was hidden with one stylesheet, and the bought words were highlighted by the browser on top of the text, so the page comes back exactly as it was, down to the pixel.</p>
+
+    <h2 id="install">6. Installation</h2>
+    <p>All four ways run the same single file.</p>
+    <ol class="ways">
+      <li><b>Bookmarklet.</b> Drag the dashed RUGPULL button above to your bookmarks bar (no bar? <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>B</kbd>, or <kbd>&#8984;</kbd> <kbd>Shift</kbd> <kbd>B</kbd> on a Mac), open any website and click it. Works in Chrome, Edge, Safari, Firefox, Arc and Brave.</li>
+      <li><b>Chrome extension.</b> Download the <a href="https://github.com/shmidtqq65/rugpull">repository</a> as a ZIP, open <code>chrome://extensions</code>, switch on Developer mode, click Load unpacked and pick the <code>extension</code> folder. Then click the icon or press <kbd>Alt</kbd> <kbd>Shift</kbd> <kbd>R</kbd>.</li>
+      <li><b>Console.</b> Paste the contents of <a href="rugpull.min.js"><code>rugpull.min.js</code></a> into the DevTools console on any page.</li>
+      <li><b>Userscript.</b> With Tampermonkey or Violentmonkey, open the <a href="https://raw.githubusercontent.com/shmidtqq65/rugpull/main/userscript/rugpull.user.js">raw userscript</a> and press <kbd>Alt</kbd> <kbd>Shift</kbd> <kbd>R</kbd> on any page.</li>
+    </ol>
+
+    <h2>7. Controls</h2>
+    <table class="keys">
+      <thead><tr><th scope="col">Input</th><th scope="col">Effect</th></tr></thead>
+      <tbody>
+        <tr><td>Click a word</td><td>Buy it</td></tr>
+        <tr><td><kbd>B</kbd></td><td>Buy a random word on the screen</td></tr>
+        <tr><td><kbd>R</kbd></td><td>Pull the rug</td></tr>
+        <tr><td><kbd>S</kbd></td><td>Save the card as a PNG</td></tr>
+        <tr><td><kbd>M</kbd></td><td>Sound on or off</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>Refund everything and close</td></tr>
+      </tbody>
+    </table>
+
+    <h2>8. Privacy</h2>
+    <p>There is no coin, no wallet, no chain and no server. The script makes no network requests and stores nothing. The market, the buyers and the crash are made up in your tab out of the page itself, and they are gone when you press <kbd>Esc</kbd> or reload. This is not financial advice, because it is not finance.</p>
+
+    <h2>9. Conclusion</h2>
+    <p>We have proposed a system for launching, trading and rugging websites without trust, since there is nothing to trust. It is one file of about 35 KB with no dependencies, and it runs on most of the web, including sites with a strict Content Security Policy. The source, the extension and the userscript are on <a href="https://github.com/shmidtqq65/rugpull">GitHub</a> under the MIT license.</p>
+
+    <h2>References</h2>
+    <ol class="refs">
+      <li>The Crumb, &ldquo;The no-knead sourdough that gave me my weekends back,&rdquo; <a href="demo/">demo page</a>, 2026. Not a real blog.</li>
+      <li>MDN Web Docs, &ldquo;<a href="https://developer.mozilla.org/docs/Web/API/CSS_Custom_Highlight_API">CSS Custom Highlight API</a>.&rdquo;</li>
+      <li>MDN Web Docs, &ldquo;<a href="https://developer.mozilla.org/docs/Web/API/Web_Audio_API">Web Audio API</a>.&rdquo;</li>
+    </ol>
+    <p class="folio">1</p>
+  </article>
+</main>
+
+<script>
+(() => {
+  'use strict';
+  const SRC = 'rugpull.min.js';
+  const btn = document.getElementById('launch');
+  const label = btn.querySelector('span');
+  const bm = document.getElementById('bm');
+  const alive = () => !!(window.__rugpull && window.__rugpull.alive);
+  let loading = false, watch = 0;
+  let toastEl = null, toastT = 0;
+  function toast(msg) {
+    if (!toastEl) { toastEl = document.createElement('div'); toastEl.className = 'toast'; toastEl.setAttribute('role', 'status'); toastEl.setAttribute('data-rugpull-ignore', ''); document.body.appendChild(toastEl); }
+    toastEl.textContent = msg;
+    toastEl.hidden = false;
+    clearTimeout(toastT);
+    toastT = setTimeout(() => { toastEl.hidden = true; }, 4200);
+  }
+  // the button says what it will do next
+  function sync() {
+    const on = alive();
+    label.textContent = on ? 'Refund and close' : 'Launch this paper as a coin';
+    btn.setAttribute('aria-pressed', String(on));
+    if (!on) { clearInterval(watch); watch = 0; }
+  }
+  function go() {
+    if (alive()) { window.__rugpull.toggle(); return; }
+    if (loading) return;
+    loading = true;
+    const s = document.createElement('script');
+    s.src = SRC;
+    s.onload = s.onerror = () => {
+      loading = false;
+      s.remove();
+      sync();
+      if (!watch) watch = setInterval(sync, 400);
+    };
+    document.body.appendChild(s);
+  }
+  btn.addEventListener('click', go);
+  // the bookmark button carries the whole script, so it works on sites with a strict CSP
+  fetch('bookmarklet.txt').then((r) => (r.ok ? r.text() : Promise.reject(r.status))).then((t) => {
+    if (/^javascript:/.test(t.trim())) bm.href = t.trim();
+  }).catch(() => {});
+  bm.addEventListener('click', (e) => {
+    e.preventDefault();
+    toast('Drag this button to your bookmarks bar, then click it on any website. Here it just runs.');
+    go();
+  });
+  if (location.hash === '#launch') setTimeout(go, 600);
+})();
+</script>
+</body>
+</html>

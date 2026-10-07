@@ -1,0 +1,33 @@
+{
+  "name": "rugpull",
+  "version": "1.0.0",
+  "description": "Every website is a memecoin now. A parody: no coins, no wallets, nothing leaves your browser.",
+  "homepage": "https://shmidtqq65.github.io/rugpull/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shmidtqq65/rugpull.git"
+  },
+  "license": "MIT",
+  "author": "shmidtqq (https://x.com/shmidtqq)",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node test/smoke.mjs",
+    "demo": "node scripts/record-demo.mjs"
+  },
+  "keywords": [
+    "parody",
+    "memecoin",
+    "bookmarklet",
+    "chrome-extension",
+    "browser-toy",
+    "canvas",
+    "css-highlight-api",
+    "web-audio"
+  ],
+  "devDependencies": {
+    "playwright": "^1.56.0",
+    "terser": "^5.44.0"
+  }
+}
